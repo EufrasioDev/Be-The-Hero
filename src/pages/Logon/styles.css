@@ -21,3 +21,6 @@
     font-size: 32px;
     margin-bottom: 32px;
 }
+.logon-container section.form form a svg{
+    margin-right: 8px;
+}

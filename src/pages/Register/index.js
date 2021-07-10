@@ -1,25 +1,39 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from  "react-icons/fi";
+import api from "../../service/api";
 import Logo from "../../assets/img/logo.svg";
 import "./style.css";
 
 export default function Register() {
+
+    const history = useHistory()
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
-    function handleRegister(e) {
-        e.preventDefault();
+
+    async function handleRegister(e) {
+        e.preventDefault()
         
-        console.log({
+        const data = {
             name,
             email,
             whatsapp,
             city,
             uf
-        });
+        }
+
+        try {
+
+            const response = await api.post("ongs", data);
+            alert(`Seu ID de acesso ${response.data.id}`);
+            history.push("/profile");
+
+        } catch (error) {
+            alert("Opsss... Parece que houve um problema ao se cadastrar. <br>Tente novamente")
+        }
     }
 
     return(
@@ -53,9 +67,9 @@ export default function Register() {
                     />
                     <div className="input-group">
                         <input 
-                                placeholder="Cidade" 
-                                value={city}
-                                onChange={e => setCity(e.target.value)} required
+                            placeholder="Cidade" 
+                            value={city}
+                            onChange={e => setCity(e.target.value)} required
                         />
                         <input
                             placeholder="UF" 
