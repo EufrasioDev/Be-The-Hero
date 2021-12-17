@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
-import api from "../../service/api";
+import api from "../../services/api";
 import people from "../../assets/img/heroes.png";
 import "./style.css";
 
@@ -32,16 +32,19 @@ export default function Details() {
       <section className="form">
         <h2>Detalhes do caso</h2>
         <ul>
-          {incident.map((element =>(
-            <li key={element.id}>
-            <strong>ONG</strong>
-            <p>{element.name}</p>
-            <strong>Caso</strong>
-            <p>{element.title}</p>
-            <strong>Valor</strong>
-            <p>{element.value}</p>
-          </li>
-          )))}
+          {incident.map((element =>{
+            return(
+              <li key={element.id}>
+                <strong>ONG</strong>
+                <p>{element.name}</p>
+                <strong>Caso</strong>
+                <p>{element.title}</p>
+                <strong>Valor</strong>
+                <p>{element.value}</p>
+              </li>
+            )
+            }
+          ))}
         </ul>
         <div className="contatos">
           <h2>Salve o dia!</h2>

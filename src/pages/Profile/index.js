@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import api from "../../service/api";
+import api from "../../services/api";
 import { FiPower, FiTrash2, FiEdit2} from "react-icons/fi"
 import Logo from "../../assets/img/logo.svg";
 import "./style.css";
@@ -60,22 +60,22 @@ export default function Profile() {
 
             <h1>Casos cadastrados</h1>
             <ul>
-                {incidents.map(incident=>(
-                    <li key={incident.id}>
+                {incidents ? incidents.map(({id, title, description, value}) => (
+                    <li key={id}>
                         <strong>Caso</strong>
-                        <p>{incident.title}</p>
+                        <p>{title}</p>
                         <strong>Descrição</strong>
-                        <p>{incident.description}</p>
+                        <p>{description}</p>
                         <strong>Valor</strong>
-                        <p>{Intl.NumberFormat("pt-AO", {style: "currency", currency: "Akz"}).format(incident.value)}</p>
-                        <button type="button" title="Deletar" className="iconsIncidents" onClick={()=>handleDeleteincident(incident.id)}>
+                        <p>{Intl.NumberFormat("pt-AO", {style: "currency", currency: "Akz"}).format(value)}</p>
+                        <button type="button" title="Deletar" className="iconsIncidents" onClick={()=>handleDeleteincident(id)}>
                             <FiTrash2 size={20} color="#a8a8b3"/>
                         </button>
                         <button type="button" title="Editar" className="iconsIncidents">
-                            <Link to={`incidents/edit/${incident.id}`}><FiEdit2 size={20} color="#E02041"  border="none"/></Link> 
+                            <Link to={`incidents/edit/${id}`}><FiEdit2 size={20} color="#E02041"  border="none"/></Link> 
                         </button>
                     </li>
-                ))}
+                )) : <p>Nenhum caso cadatrado</p>}
             </ul>
         </div>
     );

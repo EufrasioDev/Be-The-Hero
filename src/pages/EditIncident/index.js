@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import api from "../../service/api";
+import api from "../../services/api";
 import { FiArrowLeft } from "react-icons/fi";
 import Logo from "../../assets/img/logo.svg"; 
 

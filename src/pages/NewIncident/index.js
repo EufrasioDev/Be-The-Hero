@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
-import api from "../../service/api";
+import api from "../../services/api";
 import Logo from "../../assets/img/logo.svg";
 
 import "./style.css";
